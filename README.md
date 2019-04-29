@@ -2,7 +2,7 @@
 
 ![Termy](doc/termypics/termy.png)
 
-A little Ruby timer that sits in your terminal and eats away seconds.  It's
+A little Ruby timer that sits in your terminal and eats away seconds.  Its
 banner will shift from green, to yellow, to red as the timer wears down.  It'll
 continously flash red/yellow once the timer is up.
 

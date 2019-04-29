@@ -54,7 +54,7 @@ module TimerRender
     system("clear")
     puts "    Time Is Up!    ".colorize(color: :black, background: bg)
     puts "     00:00:00      ".colorize(color: :black, background: bg)
-    puts " #{CTRLC} to reset "
+    puts "  #{CTRLC} to reset  "
     sleep 0.5
     end
   end

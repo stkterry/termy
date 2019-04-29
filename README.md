@@ -6,12 +6,10 @@ A little Ruby timer that sits in your terminal and eats away seconds.  Its
 banner will shift from green, to yellow, to red as the timer wears down.  It'll
 continously flash red/yellow once the timer is up.
 
-You can run an instance of Termy by calling `termy` from a console after installation.
-
 ## Usage
 
-Simple, just call an instance of termy from the console `termy`.  Once it's up
-you can:
+You can run an instance of Termy by calling `termy` from a console after
+installation. Once it's up you can:
 
 * Start the timer by pressing `s`, `space`, or `return`.
 * Stop the timer by pressing `ctrl-c`

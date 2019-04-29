@@ -12,7 +12,7 @@ CLOCK_FACES = ["🕧", "🕛", "🕦", "🕚", "🕥", "🕙", "🕤", "🕘", "
   "🕖", "🕡", "🕕", "🕠", "🕔", "🕟", "🕓", "🕞", "🕒", "🕝", "🕑", "🕜", "🕐"].freeze
 
 module TimerRender
-
+  private
   def render(time = ZERO_TIME + self.tsecs)
     system("clear")
     bg = timer_color(time)

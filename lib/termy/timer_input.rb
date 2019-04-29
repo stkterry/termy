@@ -11,12 +11,11 @@ KEYMAP = {
 
 module TimerInput
 
+  private
   def get_input
     key = KEYMAP[read_char]
     handle_key(key)
   end
-
-  private
 
   def read_char
     STDIN.echo = false # stops the console from printing return values

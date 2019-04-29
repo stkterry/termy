@@ -57,7 +57,7 @@ class TerminalTimer
   def set_timer
     render_set_timer
     time_str = gets.chomp
-    get_tsecs(time_str)
+    self.tsecs = get_tsecs(time_str)
     self.time_str = time_str
     self.max_tsecs = self.tsecs
     render
@@ -73,7 +73,7 @@ class TerminalTimer
     h, m, s = time_str.split(":").map(&:to_i)
     [h, m, s].map { |t| raise TimeFormatError if t.nil? }
     raise TimeError unless m.between?(0, 59) && s.between?(0, 59) && h.between?(0,24)
-    self.tsecs = h*3600 + m*60 + s
+    tsecs = h*3600 + m*60 + s
     raise ZeroTimeError unless tsecs > 0
     tsecs
   end

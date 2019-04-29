@@ -73,7 +73,7 @@ class TerminalTimer
     h, m, s = time_str.split(":").map(&:to_i)
     [h, m, s].map { |t| raise TimeFormatError if t.nil? }
     raise TimeError unless m.between?(0, 59) && s.between?(0, 59) && h.between?(0,24)
-    tsecs = @tsecs = h*3600 + m*60 + s
+    self.tsecs = h*3600 + m*60 + s
     raise ZeroTimeError unless tsecs > 0
     tsecs
   end

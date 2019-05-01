@@ -3,6 +3,8 @@ require 'colorize'
 
 ZERO_TIME = Time.new(0)
 
+PRESETS = {one:'01:00:00', two:'00:45:00', three:'00:30:00', four:'00:15:00'}
+
 class TerminalTimer
   include TimerInput
   include TimerRender
@@ -19,7 +21,7 @@ class TerminalTimer
   def run
     render
     while true
-      get_input
+      get_input(:home_handle_keys)
     end
   end
 
@@ -56,17 +58,10 @@ class TerminalTimer
 
   def set_timer
     render_set_timer
-    time_str = gets.chomp
-    self.tsecs = get_tsecs(time_str)
-    self.time_str = time_str
-    self.max_tsecs = self.tsecs
+    get_input(:timer_handle_keys)
     render
   rescue Interrupt
     render
-  rescue StandardError => e
-    puts e.message
-    sleep 1.25
-    retry
   end
   
   def get_tsecs(time_str)
@@ -76,6 +71,27 @@ class TerminalTimer
     tsecs = h*3600 + m*60 + s
     raise ZeroTimeError unless tsecs > 0
     tsecs
+  end
+
+  def set_tsecs(time_str)
+    self.tsecs = get_tsecs(time_str)
+    self.time_str = time_str
+    self.max_tsecs = self.tsecs
+  end
+
+  def set_preset(preset)
+    set_tsecs(PRESETS[preset])
+  end
+
+  def set_custom
+    render_set_custom
+    time_str = gets.chomp
+    set_tsecs(time_str)
+  rescue StandardError => e
+    puts e.message
+    sleep 1.25
+    render_set_timer
+    retry
   end
 
 end

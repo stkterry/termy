@@ -1,20 +1,27 @@
 require "io/console"
 
 KEYMAP = {
+  # home keys
   "t" => :set_timer,
   " " => :space,
   "r" => :reset,
   "s" => :start,
   "\r" => :return,
   "\u0003" => :ctrl_c,
-}
+  # timer features keys
+  "1" => :one,
+  "2" => :two,
+  "3" => :three,
+  "4" => :four,
+  "c" => :custom
+}.freeze
 
 module TimerInput
 
   private
-  def get_input
+  def get_input(handle)
     key = KEYMAP[read_char]
-    handle_key(key)
+    self.send handle, key
   end
 
   def read_char
@@ -46,7 +53,7 @@ module TimerInput
     return input
   end
 
-  def handle_key(key)
+  def home_handle_keys(key)
     case key
     when :return, :space, :start
       toggle_timer
@@ -57,8 +64,19 @@ module TimerInput
     when :ctrl_c
       goodbye!
       Process.exit(0)
-    # else
-    #   puts key
+    end
+  end
+
+  def timer_handle_keys(key)
+    case key
+    when :one, :two, :three, :four
+      set_preset(key)
+    when :custom
+      set_custom
+    when :ctrl_c
+      render
+    else
+      get_input(:timer_handle_keys)
     end
   end
 

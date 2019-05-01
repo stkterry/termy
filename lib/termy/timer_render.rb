@@ -4,10 +4,15 @@ def t_opt(string)
   string.colorize(color: :light_blue).bold.underline
 end
 
-SS = t_opt("s")
-RR = t_opt("r")
-TT = t_opt("t")
-CTRLC = t_opt("ctrl-c")
+SS = t_opt("S")
+RR = t_opt("R")
+TT = t_opt("T")
+CC = t_opt("C")
+ONE = t_opt("1")
+TWO = t_opt("2")
+THREE = t_opt("3")
+FOUR = t_opt("4")
+CTRLC = t_opt("Ctrl-C")
 CLOCK_FACES = ["🕧", "🕛", "🕦", "🕚", "🕥", "🕙", "🕤", "🕘", "🕣", "🕗", "🕢", 
   "🕖", "🕡", "🕕", "🕠", "🕔", "🕟", "🕓", "🕞", "🕒", "🕝", "🕑", "🕜", "🕐"].freeze
 
@@ -40,11 +45,24 @@ module TimerRender
     "       Timer       "
   end
 
+  def timer_return
+    "Return: #{CTRLC}"
+  end
+
+  def render_set_custom
+    puts "New Timer: HH:MM:SS"
+  end
+
+  def custom_presets
+    ["#{CC}ustom", "#{ONE} #{PRESETS[:one]}", "#{TWO} #{PRESETS[:two]}", 
+     "#{THREE} #{PRESETS[:three]}", "#{FOUR} #{PRESETS[:four]}"]
+  end
+
   def render_set_timer
     system("clear")
     puts timer_header.colorize(color: :black, background: :green)
-    puts "Return: #{CTRLC}"
-    puts "New Timer: HH:MM:SS"
+    puts custom_presets
+    puts timer_return
   end
 
   def flash_over
